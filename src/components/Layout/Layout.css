@@ -1,0 +1,7 @@
+.layout {
+    width: 350px;
+    height: 600px;
+    border: 8px solid #5f5c5c;
+    border-radius: 20px;
+    background-color: white;
+}
