@@ -1,0 +1,68 @@
+.register-cinco {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.arrow {
+    display: flex;
+    width: 330px;
+}
+.arrow img {
+    align-items: flex-start;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.register-cinco-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    width: 280px;
+}
+.register-cinco-container input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #2b2b2b;
+    outline: none;
+    color: grey;
+}
+.register-cinco-container p {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.register-cinco-container span {
+    margin-top: 8px;
+    font-size: 10px;
+    color: grey;
+}
+.register-cinco-container .continue {
+    margin-top: 70px;
+    background-color: red;
+    border: none;
+    padding: 8px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+.card-password {
+    margin-top: 50px;
+    background-color: rgb(31, 129, 168);
+    height: 90px;
+    width: 100%;
+    border-radius: 20px;
+    color: white;
+    line-height: 1;
+}
+.card-password h3 {
+    font-size: 14px;
+    margin: 12px;
+}
+.card-password p {
+    font-size: 12px;
+    margin: 12px;
+}

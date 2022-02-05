@@ -1,0 +1,46 @@
+.register-dos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.arrow {
+    display: flex;
+    width: 330px;
+}
+.arrow img {
+    align-items: flex-start;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.register-dos-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    width: 280px;
+}
+.register-dos-container input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #2b2b2b;
+    outline: none;
+    color: grey;
+}
+.register-dos-container p {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.register-dos-container .continue {
+    margin-top: 290px;
+    background-color: red;
+    border: none;
+    padding: 8px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
