@@ -1,4 +1,6 @@
 import React from 'react';
+import clientAxios from '../../../utils/Axios';
+
 import './Uno.css'
 
 const Uno = ({onNext, data, setData}) => {
@@ -9,6 +11,25 @@ const Uno = ({onNext, data, setData}) => {
         setData(prev => ({ ...prev, [name]: value }));
     }
 
+    const ckeckContinue = async () => {
+        if (!data.firstName || !data.lastName || !data.dni) {
+            alert("COMPLETE TODOS LOS CAMPOS");
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("dni", data.dni);
+
+        await clientAxios.post('users/check_dni', formData)
+            .then(res => {
+                onNext();
+            })
+            .catch(error => {
+                alert("YA EXISTE EL DNI")
+                return;
+            })
+    }
+
     return <div className='register'>
         <img src='/images/logo.png' />
         <div className='register-container'>
@@ -16,8 +37,8 @@ const Uno = ({onNext, data, setData}) => {
             <br />
             <input 
                 placeholder='Nombre' 
-                name='name' 
-                value={data.name} 
+                name='firstName' 
+                value={data.firstName} 
                 onChange={handleChange}
             />
             <br />
@@ -37,7 +58,7 @@ const Uno = ({onNext, data, setData}) => {
                 onChange={handleChange} 
             />
 
-            <button className='continue' onClick={onNext}>
+            <button className='continue' onClick={ckeckContinue}>
                 Continuar
             </button>
         </div>

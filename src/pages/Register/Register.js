@@ -20,11 +20,11 @@ const Register = () => {
   const Step = steps[step];
 
   const [data, setData] = useState({
-    name: '',
+    firstName: '',
     lastName: '',
     dni: '',
     email: '',
-    tel: '',
+    phone: '',
     password: '',
     confirmPassword: ''
   });
