@@ -26,7 +26,8 @@ const Register = () => {
     email: '',
     phone: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    token: ''
   });
 
   const onNext = () => {

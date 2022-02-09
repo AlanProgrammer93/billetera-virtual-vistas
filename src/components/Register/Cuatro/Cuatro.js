@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import clientAxios from '../../../utils/Axios';
+
 import './Cuatro.css'
 
 const Cuatro = ({ onNext, onPrev, data, setData }) => {
@@ -8,14 +10,42 @@ const Cuatro = ({ onNext, onPrev, data, setData }) => {
         tres: '',
         cuatro: ''
     });
-
+    console.log(data);
     const nextNumber = (e, next) => {
         const { name, value } = e.target;
         setCode(prev => ({ ...prev, [name]: value }));
 
-        if(next){
+        if (next) {
             document.getElementById(next).focus()
-        } 
+        }
+    }
+
+    const ckeckContinue = async () => {
+        if (!code.uno || !code.dos || !code.tres || !code.cuatro) {
+            alert("COMPLETE TODOS LOS CAMPOS");
+            return;
+        }
+
+        const codeInput = `${code.uno}${code.dos}${code.tres}${code.cuatro}`
+
+        console.log(`+54${data.phone}`);
+        console.log(codeInput);
+        console.log(data.token);
+
+        console.log("TODOS LOS DATOS ", data);
+
+        await clientAxios.post('users/sms/ckeck', {to: `+54${data.phone}`, message: codeInput, token: data.token})
+            .then(res => {
+                console.log("algo");
+                onNext();
+            })
+            .catch(error => {
+                alert("CODIGO INVALIDO");
+                console.log(error);
+                onNext();
+                return;
+            })
+
     }
 
     return <div className='register-cuatro'>
@@ -24,7 +54,7 @@ const Cuatro = ({ onNext, onPrev, data, setData }) => {
         </div>
         <div className='register-cuatro-container'>
             <p>Ingresá el codigo que te enviamos al celular:</p>
-            <p>1133649875</p>
+            <p>{data.phone}</p>
             <br />
             <div className='input-otp'>
                 <input type="text" value={code.uno} id='uno' name="uno" maxLength={1} onChange={(e) => nextNumber(e, 'dos')} />
@@ -34,7 +64,7 @@ const Cuatro = ({ onNext, onPrev, data, setData }) => {
             </div>
             <span>Reenviar Codigo</span>
 
-            <button className='continue' onClick={onNext}>
+            <button className='continue' onClick={ckeckContinue}>
                 Continuar
             </button>
         </div>

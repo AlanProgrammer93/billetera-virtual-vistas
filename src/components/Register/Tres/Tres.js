@@ -1,4 +1,6 @@
 import React from 'react';
+import clientAxios from '../../../utils/Axios';
+
 import './Tres.css'
 
 const Tres = ({ onNext, onPrev, data, setData }) => {
@@ -6,6 +8,24 @@ const Tres = ({ onNext, onPrev, data, setData }) => {
         const { name, value } = e.target;
 
         setData(prev => ({ ...prev, [name]: value }));
+    }
+
+    const ckeckContinue = async () => {
+        if (!data.phone) {
+            alert("COMPLETE TODOS LOS CAMPOS");
+            return;
+        }
+
+        await clientAxios.post('users/sms/send', {to: `+54${data.phone}`})
+            .then(res => {
+                console.log(res.data);
+                setData({...data, token: res.data.access_token})
+                onNext();
+            })
+            .catch(error => {
+                alert("ERROR DE SERVICIO. INTENTELO OTRA VES");
+                return;
+            })
     }
     
     return <div className='register-tres'>
@@ -17,13 +37,13 @@ const Tres = ({ onNext, onPrev, data, setData }) => {
             <br />
             <input
                 placeholder='Celular'
-                name='tel'
-                value={data.tel}
+                name='phone'
+                value={data.phone}
                 onChange={handleChange}
             />
             <span>Codigo de area + Número</span>
 
-            <button className='continue' onClick={onNext}>
+            <button className='continue' onClick={ckeckContinue}>
                 Continuar
             </button>
         </div>
